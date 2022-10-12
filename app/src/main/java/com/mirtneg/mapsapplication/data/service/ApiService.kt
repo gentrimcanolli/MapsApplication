@@ -13,6 +13,7 @@ interface ApiService {
     fun getPlaces(
         @Query("location") location: String,
         @Query("radius") radius: String = "2000",
-        @Query("type") type: String
+        @Query("type") type: String,
+        @Query("key") key: String
     ): Call<PlacesResponse>
 }

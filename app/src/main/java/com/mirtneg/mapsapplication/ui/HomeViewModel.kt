@@ -14,7 +14,7 @@ class HomeViewModel : ViewModel() {
     val places = MutableLiveData<List<Place>>()
 
     fun getPlaces() {
-        repository.apiService.getPlaces("42.6629,21.1655", "2000", "restaurant")
+        repository.apiService.getPlaces("42.6629,21.1655", "2000", "restaurant", "AIzaSyDv6PAu7v3shh4i4ycKuW9TG6toCWyDzjI")
             .enqueue(object : Callback<PlacesResponse> {
                 override fun onResponse(
                     call: Call<PlacesResponse>,
