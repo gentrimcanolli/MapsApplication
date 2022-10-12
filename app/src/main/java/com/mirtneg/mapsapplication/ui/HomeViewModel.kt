@@ -18,8 +18,7 @@ class HomeViewModel : ViewModel() {
             .enqueue(object : Callback<PlacesResponse> {
                 override fun onResponse(
                     call: Call<PlacesResponse>,
-                    response: Response<PlacesResponse>
-                ) {
+                    response: Response<PlacesResponse>) {
                     places.value = response.body()?.results
                 }
 
