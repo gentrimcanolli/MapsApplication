@@ -13,6 +13,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.mirtneg.mapsapplication.R
 import com.mirtneg.mapsapplication.data.models.Place
 import com.mirtneg.mapsapplication.databinding.ActivityMapsBinding
+import com.mirtneg.mapsapplication.ui.HomeViewModel.Companion.TYPE_HOTEL
+import com.mirtneg.mapsapplication.ui.HomeViewModel.Companion.TYPE_RESTAURANT
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -33,12 +35,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.restaurants.setOnClickListener {
+            viewModel.getPlaces(TYPE_HOTEL)
+        }
+
+        binding.hotels.setOnClickListener {
+            viewModel.getPlaces(TYPE_RESTAURANT)
+        }
+
         viewModel.places.observe(this) {
             showPlaces(it)
         }
     }
 
     private fun showPlaces(places: List<Place>) {
+        mMap.clear()
         for (place in places) {
             mMap.addMarker(
                 MarkerOptions()
@@ -54,8 +65,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val pristina = LatLng(42.664, 21.1756)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(pristina))
         mMap.animateCamera(CameraUpdateFactory.newLatLng(pristina))
-        mMap.setMinZoomPreference(10f)
-        viewModel.getPlaces()
+        mMap.setMinZoomPreference(15f)
+        viewModel.getPlaces(TYPE_RESTAURANT)
 
     }
 }

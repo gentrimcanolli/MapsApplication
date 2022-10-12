@@ -10,15 +10,27 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeViewModel : ViewModel() {
+
+    companion object {
+        val TYPE_RESTAURANT = "restaurant"
+        val TYPE_HOTEL = "hotel"
+    }
+
     val repository = Repository()
     val places = MutableLiveData<List<Place>>()
 
-    fun getPlaces() {
-        repository.apiService.getPlaces("42.6629,21.1655", "2000", "restaurant", "AIzaSyDv6PAu7v3shh4i4ycKuW9TG6toCWyDzjI")
+    fun getPlaces(type: String) {
+        repository.apiService.getPlaces(
+            "42.6629,21.1655",
+            "2000",
+            type,
+            "AIzaSyDv6PAu7v3shh4i4ycKuW9TG6toCWyDzjI"
+        )
             .enqueue(object : Callback<PlacesResponse> {
                 override fun onResponse(
                     call: Call<PlacesResponse>,
-                    response: Response<PlacesResponse>) {
+                    response: Response<PlacesResponse>
+                ) {
                     places.value = response.body()?.results
                 }
 

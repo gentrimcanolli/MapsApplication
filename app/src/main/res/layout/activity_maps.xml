@@ -24,6 +24,26 @@
         android:orientation="horizontal"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent" />
+        map:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/restaurants"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_restaurant_24"
+            />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/hotels"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_hotel_24"
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
